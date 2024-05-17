@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3l3navsro4yk"]
+
+[ext_resource type="PackedScene" uid="uid://dqnk8stkjf3d2" path="res://Player/player.tscn" id="1_o1qvl"]
+[ext_resource type="PackedScene" uid="uid://bkmtv1bhtn7da" path="res://Menus/menus.tscn" id="2_d4myo"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Controller" type="Node2D" parent="."]
+
+[node name="Player" parent="Controller" instance=ExtResource("1_o1qvl")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Controller"]
+
+[node name="Menus" parent="Controller/CanvasLayer" instance=ExtResource("2_d4myo")]
