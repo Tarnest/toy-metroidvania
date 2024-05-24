@@ -6,6 +6,8 @@ var state: State : set = change_state
 
 
 func change_state(new_state: State) -> void:
+	if state == new_state:
+		return
 	if state != null:
 		state.exit()
 	state = new_state

@@ -1,24 +1,22 @@
-class_name Run
+class_name Move
 extends PlayerState
 
 signal idle
 
 
-func enter() -> void:
-	set_physics_process(true)
-
-
-func exit() -> void:
-	set_physics_process(false)
-
-
-func _physics_process(delta: float) -> void:
-	print_debug("run")
+func physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	
-	if !direction:
+	if Input.is_action_just_pressed("jump") && player.can_jump:
+		player.jump()
+	
+	if !direction && player.is_on_floor():
 		idle.emit()
 	
-	player.velocity.x = direction * player.SPEED
+	player.can_jump = player.is_on_floor()
 	
-	player.move_and_slide()
+	player.move_x(delta, direction)
+	player.apply_gravity(delta)
+
+
+

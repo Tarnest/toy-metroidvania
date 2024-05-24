@@ -4,19 +4,11 @@ extends PlayerState
 signal moving
 
 
-func enter() -> void:
-	set_physics_process(true)
-
-
-func exit() -> void:
-	set_physics_process(false)
-
-
-func _physics_process(delta: float) -> void:
-	print_debug("idle")
-
-
-func _unhandled_input(event: InputEvent) -> void:
+func physics_process(delta: float) -> void:
+	player.move_x(delta, 0)
+	
 	if player.is_moving():
+		if Input.is_action_just_pressed("jump"):
+			player.jump()
 		moving.emit()
 
